@@ -24,7 +24,9 @@ export const Option = (props: OptionProps) => {
 	useEnterSubmit({ onChange, option });
 
 	const inputId = `${groupName}_radio_item_with_value__${value}`;
-	const isChecked = value === selected.title;
+
+	// ✅ FIX #1: сравниваем value с selected.value, а не с selected.title
+	const isChecked = value === selected.value;
 
 	return (
 		<div
@@ -40,6 +42,8 @@ export const Option = (props: OptionProps) => {
 				name={groupName}
 				id={inputId}
 				value={value}
+				// ✅ FIX #2: делаем input контролируемым
+				checked={isChecked}
 				onChange={handleChange}
 				tabIndex={-1}
 			/>
